@@ -1,0 +1,21 @@
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+
+# Visual Studio cache
+.vs/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Environment
+*.env
+
+# Others
+*.DS_Store
