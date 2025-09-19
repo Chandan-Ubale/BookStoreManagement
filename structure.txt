@@ -1,0 +1,163 @@
+Folder PATH listing
+Volume serial number is 9C46-BED9
+C:.
+¦   .dockerignore
+¦   .gitignore
+¦   BookStoreManagement.sln
+¦   structure.txt
+¦   
++---.github
+¦   +---workflows
++---BookStoreManagement
+¦   ¦   appsettings.Development.json
+¦   ¦   appsettings.json
+¦   ¦   BookStoreManagement.csproj
+¦   ¦   BookStoreManagement.csproj.user
+¦   ¦   BookStoreManagement.http
+¦   ¦   Dockerfile
+¦   ¦   Program.cs
+¦   ¦   
+¦   +---bin
+¦   ¦   +---Debug
+¦   ¦       +---net8.0
+¦   ¦               appsettings.Development.json
+¦   ¦               appsettings.json
+¦   ¦               BookStoreManagement.deps.json
+¦   ¦               BookStoreManagement.dll
+¦   ¦               BookStoreManagement.exe
+¦   ¦               BookStoreManagement.pdb
+¦   ¦               BookStoreManagement.runtimeconfig.json
+¦   ¦               BookStoreManagement.staticwebassets.endpoints.json
+¦   ¦               DnsClient.dll
+¦   ¦               Microsoft.OpenApi.dll
+¦   ¦               MongoDB.Bson.dll
+¦   ¦               MongoDB.Driver.dll
+¦   ¦               SharpCompress.dll
+¦   ¦               Snappier.dll
+¦   ¦               Swashbuckle.AspNetCore.Annotations.dll
+¦   ¦               Swashbuckle.AspNetCore.Swagger.dll
+¦   ¦               Swashbuckle.AspNetCore.SwaggerGen.dll
+¦   ¦               Swashbuckle.AspNetCore.SwaggerUI.dll
+¦   ¦               ZstdSharp.dll
+¦   ¦               
+¦   +---Controllers
+¦   ¦       BooksController.cs
+¦   ¦       
+¦   +---obj
+¦   ¦   ¦   BookStoreManagement.csproj.nuget.dgspec.json
+¦   ¦   ¦   BookStoreManagement.csproj.nuget.g.props
+¦   ¦   ¦   BookStoreManagement.csproj.nuget.g.targets
+¦   ¦   ¦   project.assets.json
+¦   ¦   ¦   project.nuget.cache
+¦   ¦   ¦   
+¦   ¦   +---Container
+¦   ¦   ¦       ContainerDevelopmentMode.cache
+¦   ¦   ¦       ContainerId.cache
+¦   ¦   ¦       ContainerName.cache
+¦   ¦   ¦       ContainerRunContext.cache
+¦   ¦   ¦       
+¦   ¦   +---Debug
+¦   ¦       +---net8.0
+¦   ¦           ¦   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+¦   ¦           ¦   ApiEndpoints.json
+¦   ¦           ¦   apphost.exe
+¦   ¦           ¦   BookStor.47DEDDF4.Up2Date
+¦   ¦           ¦   BookStoreManagement.AssemblyInfo.cs
+¦   ¦           ¦   BookStoreManagement.AssemblyInfoInputs.cache
+¦   ¦           ¦   BookStoreManagement.assets.cache
+¦   ¦           ¦   BookStoreManagement.csproj.AssemblyReference.cache
+¦   ¦           ¦   BookStoreManagement.csproj.BuildWithSkipAnalyzers
+¦   ¦           ¦   BookStoreManagement.csproj.CoreCompileInputs.cache
+¦   ¦           ¦   BookStoreManagement.csproj.FileListAbsolute.txt
+¦   ¦           ¦   BookStoreManagement.dll
+¦   ¦           ¦   BookStoreManagement.GeneratedMSBuildEditorConfig.editorconfig
+¦   ¦           ¦   BookStoreManagement.genruntimeconfig.cache
+¦   ¦           ¦   BookStoreManagement.GlobalUsings.g.cs
+¦   ¦           ¦   BookStoreManagement.MvcApplicationPartsAssemblyInfo.cache
+¦   ¦           ¦   BookStoreManagement.MvcApplicationPartsAssemblyInfo.cs
+¦   ¦           ¦   BookStoreManagement.pdb
+¦   ¦           ¦   BookStoreManagement.sourcelink.json
+¦   ¦           ¦   rjsmcshtml.dswa.cache.json
+¦   ¦           ¦   rjsmrazor.dswa.cache.json
+¦   ¦           ¦   rpswa.dswa.cache.json
+¦   ¦           ¦   staticwebassets.build.endpoints.json
+¦   ¦           ¦   staticwebassets.build.json
+¦   ¦           ¦   staticwebassets.build.json.cache
+¦   ¦           ¦   staticwebassets.references.upToDateCheck.txt
+¦   ¦           ¦   staticwebassets.removed.txt
+¦   ¦           ¦   
+¦   ¦           +---EndpointInfo
+¦   ¦           ¦       BookStoreManagement.json
+¦   ¦           ¦       BookStoreManagement.OpenApiFiles.cache
+¦   ¦           ¦       
+¦   ¦           +---ref
+¦   ¦           ¦       BookStoreManagement.dll
+¦   ¦           ¦       
+¦   ¦           +---refint
+¦   ¦           ¦       BookStoreManagement.dll
+¦   ¦           ¦       
+¦   ¦           +---staticwebassets
+¦   +---Properties
+¦           launchSettings.json
+¦           
++---Models
+¦   ¦   Books.cs
+¦   ¦   BookstoreDatabaseSettings.cs
+¦   ¦   Models.csproj
+¦   ¦   
+¦   +---bin
+¦   ¦   +---Debug
+¦   ¦       +---net8.0
+¦   +---obj
+¦       ¦   Models.csproj.nuget.dgspec.json
+¦       ¦   Models.csproj.nuget.g.props
+¦       ¦   Models.csproj.nuget.g.targets
+¦       ¦   project.assets.json
+¦       ¦   project.nuget.cache
+¦       ¦   
+¦       +---Debug
+¦           +---net8.0
+¦               ¦   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+¦               ¦   Models.AssemblyInfo.cs
+¦               ¦   Models.AssemblyInfoInputs.cache
+¦               ¦   Models.assets.cache
+¦               ¦   Models.GeneratedMSBuildEditorConfig.editorconfig
+¦               ¦   Models.GlobalUsings.g.cs
+¦               ¦   
+¦               +---ref
+¦               +---refint
++---Results
+¦       BookStoreApi.png
+¦       DeleteById.png
+¦       GetData.png
+¦       GetDataById.png
+¦       PostBulkData.png
+¦       PostSingle.png
+¦       PutDataById.png
+¦       PutDataByIdPartial.png
+¦       
++---Services
+    ¦   BookServices.cs
+    ¦   Services.csproj
+    ¦   
+    +---bin
+    ¦   +---Debug
+    ¦       +---net8.0
+    +---obj
+        ¦   project.assets.json
+        ¦   project.nuget.cache
+        ¦   Services.csproj.nuget.dgspec.json
+        ¦   Services.csproj.nuget.g.props
+        ¦   Services.csproj.nuget.g.targets
+        ¦   
+        +---Debug
+            +---net8.0
+                ¦   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+                ¦   Services.AssemblyInfo.cs
+                ¦   Services.AssemblyInfoInputs.cache
+                ¦   Services.assets.cache
+                ¦   Services.GeneratedMSBuildEditorConfig.editorconfig
+                ¦   Services.GlobalUsings.g.cs
+                ¦   
+                +---ref
+                +---refint

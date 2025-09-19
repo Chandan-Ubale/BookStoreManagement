@@ -1,26 +1,49 @@
-using BookStoreManagement.Models;
-using BookStoreManagement.Services;
+using Services;
+using Models;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Bind BookstoreDatabaseSettings section in appsettings.json
+// Bind appsettings.json -> BookstoreDatabaseSettings
 builder.Services.Configure<BookstoreDatabaseSettings>(
     builder.Configuration.GetSection("BookstoreDatabaseSettings"));
 
-// Register BookServices as singleton
+
+
+// Register services layer
 builder.Services.AddSingleton<BookServices>();
 
+// Add controllers + Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "BookStoreManagement API",
+        Version = "v1",
+        Description = "API for managing books in a bookstore",
+        Contact = new OpenApiContact
+        {
+            Name = "Your Name",
+            Email = "your@email.com"
+        }
+    });
+    c.EnableAnnotations();
+});
 
 var app = builder.Build();
 
+// Enable Swagger only in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStoreManagement API v1");
+    });
 }
 
 app.UseAuthorization();

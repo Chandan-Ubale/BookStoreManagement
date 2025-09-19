@@ -1,7 +1,7 @@
-using BookStoreManagement.Models;
-using BookStoreManagement.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Annotations;
+using Models;       
+using Services;      
 
 namespace BookStoreManagement.Controllers
 {
@@ -16,12 +16,12 @@ namespace BookStoreManagement.Controllers
             _bookService = bookService;
         }
 
-        // GET: api/books
         [HttpGet]
+        [SwaggerOperation(Summary = "Get all books")]
         public ActionResult<List<Books>> Get() => _bookService.Get();
 
-        // GET: api/books/{id}
         [HttpGet("{id:length(24)}", Name = "GetBook")]
+        [SwaggerOperation(Summary = "Get book by ID")]
         public ActionResult<Books> Get(string id)
         {
             var book = _bookService.Get(id);
@@ -29,42 +29,54 @@ namespace BookStoreManagement.Controllers
             return book;
         }
 
-        // POST: api/books (single insert)
-        [HttpPost]
+        [HttpPost("add-one", Name = "AddOneBook")]
+        [SwaggerOperation(Summary = "Add one book")]
         public ActionResult<Books> Create(Books book)
         {
             _bookService.Create(book);
             return CreatedAtRoute("GetBook", new { id = book.Id }, book);
         }
 
-        // POST: api/books/bulk (bulk insert)
-        [HttpPost("bulk")]
+        [HttpPost("bulk-add", Name = "AddBooksInBulk")]
+        [SwaggerOperation(Summary = "Add multiple books in bulk")]
         public ActionResult<List<Books>> CreateBulk(List<Books> books)
         {
             _bookService.CreateBulk(books);
             return Created("", books);
         }
 
-        // PUT: api/books/{id}
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id:length(24)}", Name = "UpdateBookById")]
+        [SwaggerOperation(Summary = "Update book by ID")]
         public IActionResult Update(string id, Books bookIn)
         {
-            var book = _bookService.Get(id);
-            if (book == null) return NotFound();
-
-            _bookService.Update(id, bookIn);
-            return NoContent();
+            try
+            {
+                _bookService.Update(id, bookIn);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // DELETE: api/books/{id}
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("{id:length(24)}", Name = "DeleteBookById")]
+        [SwaggerOperation(Summary = "Delete book by ID")]
         public IActionResult Delete(string id)
         {
-            var book = _bookService.Get(id);
-            if (book == null) return NotFound();
-
-            _bookService.Remove(id);
-            return NoContent();
+            try
+            {
+                _bookService.Remove(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
