@@ -21,11 +21,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- Fixed references -->
+		<!-- Correct project references -->
 		<ProjectReference Include="..\BookStoreManagement.Infra\BookStoreManagement.Infra.csproj" />
-		<ProjectReference Include="..\Models\Models.csproj" />
+		<ProjectReference Include="..\Models\BookStoreManagement.Core.csproj" />
 		<ProjectReference Include="..\Services\BookStoreManagement.Services.csproj" />
-		<ProjectReference Include="..\Services\Services.csproj" />
 	</ItemGroup>
 
 </Project>
