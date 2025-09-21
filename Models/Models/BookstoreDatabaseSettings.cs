@@ -1,4 +1,4 @@
-﻿namespace Models;
+﻿namespace BookStoreManagement.Core.Models;
 
 public class BookstoreDatabaseSettings
 {

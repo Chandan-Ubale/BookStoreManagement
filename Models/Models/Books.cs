@@ -1,7 +1,8 @@
-﻿using MongoDB.Bson;
+﻿using BookStoreManagement.Core.Interfaces;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Models
+namespace BookStoreManagement.Core.Models
 {
     public class Books : IBook
     {

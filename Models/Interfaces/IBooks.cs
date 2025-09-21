@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace BookStoreManagement.Core.Interfaces
 {
     public interface IBook
     {

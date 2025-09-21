@@ -1,43 +1,32 @@
-﻿using Microsoft.Extensions.Options;
-using Models;
+﻿using BookStoreManagement.Core.Interfaces;
+using BookStoreManagement.Core.Models;
+using BookStoreManagement.Infra.Data;
 using MongoDB.Driver;
 
-namespace Services
+namespace BookStoreManagement.Infra.Repositories
 {
-    public class BookServices : IBookService
+    public class BookRepository : IBookRepository
     {
         private readonly IMongoCollection<Books> _books;
 
-        public BookServices(IOptions<BookstoreDatabaseSettings> settings)
+        public BookRepository(MongoDbContext context)
         {
-            var client = new MongoClient(settings.Value.ConnectionString);
-            var database = client.GetDatabase(settings.Value.DatabaseName);
-            _books = database.GetCollection<Books>(settings.Value.BooksCollectionName);
+            _books = context.Books;
         }
 
-        // GET all books
-        public List<Books> Get() => _books.Find(book => true).ToList();
+        public List<Books> GetAllBooks() =>
+            _books.Find(book => true).ToList();
 
-        // GET a single book by Id
-        public Books? Get(string id) =>
+        public Books? GetBookById(string id) =>
             _books.Find(book => book.Id == id).FirstOrDefault();
 
-        // POST / Create a single book
-        public Books Create(Books book)
-        {
+        public void AddBook(Books book) =>
             _books.InsertOne(book);
-            return book;
-        }
 
-        // POST / Create multiple books (bulk insert)
-        public List<Books> CreateBulk(List<Books> books)
-        {
+        public void AddBooksBulk(List<Books> books) =>
             _books.InsertMany(books);
-            return books;
-        }
 
-        // PUT / Update a book by Id (partial update support)
-        public void Update(string id, Books bookIn)
+        public void UpdateBook(string id, Books bookIn)
         {
             var updates = new List<UpdateDefinition<Books>>();
             var updateBuilder = Builders<Books>.Update;
@@ -55,15 +44,13 @@ namespace Services
                 throw new ArgumentException("No valid fields provided to update.");
 
             var updateDefinition = updateBuilder.Combine(updates);
-
             var result = _books.UpdateOne(book => book.Id == id, updateDefinition);
 
             if (result.MatchedCount == 0)
                 throw new KeyNotFoundException($"Book with Id '{id}' not found.");
         }
 
-        // DELETE / Remove a book by Id
-        public void Remove(string id)
+        public void DeleteBook(string id)
         {
             var result = _books.DeleteOne(book => book.Id == id);
             if (result.DeletedCount == 0)

@@ -1,30 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using Models;       
-using Services;      
+using BookStoreManagement.Core.Interfaces;
+using BookStoreManagement.Core.Models;
 
-namespace BookStoreManagement.Controllers
+namespace BookStoreManagement.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class BooksController : ControllerBase
     {
-        private readonly BookServices _bookService;
+        private readonly IBookService _bookService;
 
-        public BooksController(BookServices bookService)
+        public BooksController(IBookService bookService)
         {
             _bookService = bookService;
         }
 
         [HttpGet]
         [SwaggerOperation(Summary = "Get all books")]
-        public ActionResult<List<Books>> Get() => _bookService.Get();
+        public ActionResult<List<Books>> Get() => _bookService.GetAllBooks();
 
         [HttpGet("{id:length(24)}", Name = "GetBook")]
         [SwaggerOperation(Summary = "Get book by ID")]
         public ActionResult<Books> Get(string id)
         {
-            var book = _bookService.Get(id);
+            var book = _bookService.GetBookById(id);
             if (book == null) return NotFound();
             return book;
         }
@@ -33,7 +33,7 @@ namespace BookStoreManagement.Controllers
         [SwaggerOperation(Summary = "Add one book")]
         public ActionResult<Books> Create(Books book)
         {
-            _bookService.Create(book);
+            _bookService.AddBook(book);
             return CreatedAtRoute("GetBook", new { id = book.Id }, book);
         }
 
@@ -41,7 +41,7 @@ namespace BookStoreManagement.Controllers
         [SwaggerOperation(Summary = "Add multiple books in bulk")]
         public ActionResult<List<Books>> CreateBulk(List<Books> books)
         {
-            _bookService.CreateBulk(books);
+            _bookService.AddBooksBulk(books);
             return Created("", books);
         }
 
@@ -51,7 +51,7 @@ namespace BookStoreManagement.Controllers
         {
             try
             {
-                _bookService.Update(id, bookIn);
+                _bookService.UpdateBook(id, bookIn);
                 return NoContent();
             }
             catch (KeyNotFoundException)
@@ -70,7 +70,7 @@ namespace BookStoreManagement.Controllers
         {
             try
             {
-                _bookService.Remove(id);
+                _bookService.DeleteBook(id);
                 return NoContent();
             }
             catch (KeyNotFoundException)

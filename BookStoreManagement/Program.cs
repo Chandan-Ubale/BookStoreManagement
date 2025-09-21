@@ -1,6 +1,8 @@
-using Services;
-using Models;
-using Microsoft.Extensions.Options;
+using BookStoreManagement.Core.Interfaces;
+using BookStoreManagement.Core.Models;
+using BookStoreManagement.Infra.Data;
+using BookStoreManagement.Infra.Repositories;
+using BookStoreManagement.Services.Services;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,15 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<BookstoreDatabaseSettings>(
     builder.Configuration.GetSection("BookstoreDatabaseSettings"));
 
-
-
-// Register services layer
-builder.Services.AddSingleton<BookServices>();
+// Register infrastructure and services
+builder.Services.AddSingleton<MongoDbContext>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 // Add controllers + Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -48,5 +49,4 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();
